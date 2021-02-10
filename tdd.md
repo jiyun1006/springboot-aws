@@ -28,7 +28,7 @@
 
 *java의 경우에는 JUit을 활용한다.*   
 
-<br>
+<br><br>
 
 >### 실제 단위 테스트 예시   
 >#### Hello클래스를 만들고, 이를 실행하는 controller를 만든다.   
@@ -83,7 +83,7 @@ public class HelloController {
 `HTTP Header의 Status를 검증한다.`   
 `isOk이므로 200인지 아닌지를 검증한다.`   
   
-- .andExpect(content().string(hello))
+- .andExpect(content().string(hello))   
 `응답 본문의 내용을 검증한다.`
 `Controller에서 "hello"를 리턴하기 때문에 이 값을 검증한다.`   
      
