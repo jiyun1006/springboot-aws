@@ -30,7 +30,7 @@
 
 <br><br>
 
->### 실제 단위 테스트 예시   
+>### 실제 단위 테스트 예시 1   
 >#### Hello클래스를 만들고, 이를 실행하는 controller를 만든다.   
 >#### 이후 제대로 실행되고 있는지에 대한 test코드를 만든다.
 
@@ -104,3 +104,88 @@ public class HelloControllerTest {
     }
 }
 ```   
+
+<br><br>
+
+
+>## 실제 단위 테스트 예시 2(feat. lombok)   
+>#### 테스트 코드를 lombok으로 변경하고, 실행.    
+
+<br>
+
+*lombok을 이용한 getter 클래스 파일*   
+
+- @Getter    
+`선언된 모든 필드의 get메소드를 생성해 준다.`     
+  
+  
+- @RequiredArgsConstructor   
+`선언된 모든 final 필드가 포함된 생성자를 생성해 준다.`   
+`final이 없는 필드는 생성자에 포함되지 않는다.`     
+  
+
+```java
+@Getter
+@RequiredArgsConstructor
+public class HelloResponseDto {
+    private final String name;
+    private final int amount;
+}
+```   
+
+*lombok 테스트 파일*   
+
+- assertThat   
+`검증하고 싶은 대상을 메소드 인자로 받고, isEqualTo와 같이 메소드를 이어서 사용가능하다.`   
+  
+
+
+```java
+public class HelloResponseDtoTest {
+
+    @Test
+    public void 롬복_기능_테스트(){
+        String name = "test";
+        int amount = 1000;
+
+        HelloResponseDto dto = new HelloResponseDto(name, amount);
+
+        assertThat(dto.getName()).isEqualTo(name);
+        assertThat(dto.getAmount()).isEqualTo(amount);
+    }
+}
+```   
+
+<br>
+
+*처음의 HelloController에 새로 만든 lombok class 추가.*      
+
+- param   
+`API테스트할 때 사용될 요청 파라미터를 설정한다.`   
+`값은 String만 허용된다.`   
+  
+
+- jsonPath   
+`JSON 응답값을 필드별로 검증할 수 있는 메소드이다.`   
+`$ 를 기준으로 필드명을 명시한다.`    
+  
+  
+```java
+
+--- lombok 테스트 코드 추가 부분 ---
+
+@Test
+    public void helloDto가_리턴된다() throws Exception {
+        String name = "hello";
+        int amount = 1000;
+
+        mvc.perform(
+                get("/hello/dto")
+                        .param("name", name)
+                        .param("amount", String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
+
+    }
+```
