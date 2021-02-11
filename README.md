@@ -1,4 +1,4 @@
-## 초기 설정   
+## 학습 내용 및 설정   
 
 <br>
 
@@ -9,3 +9,8 @@
 
 
 >## TDD / Unit Test <a href="https://github.com/jiyun1006/springboot-aws/blob/main/tdd.md">[클릭]</a>
+
+
+<br>
+
+>## JPA <a href = "https://github.com/jiyun1006/springboot-aws/blob/main/JPA.md">[클릭]</a>
