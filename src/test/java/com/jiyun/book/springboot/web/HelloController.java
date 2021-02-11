@@ -1,4 +1,4 @@
-package springboot.web;
+package com.jiyun.book.springboot.web;
 
 
 import com.jiyun.book.springboot.web.dto.HelloResponseDto;
