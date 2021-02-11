@@ -2,7 +2,9 @@ package com.jiyun.book.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+@EnableJpaAuditing
 @SpringBootApplication  // 스프링부트의 자동 설정, 스프링Bean 읽기와 생성 모두 자동으로 설정.
 public class Application {
     public static void main(String[] args) {
