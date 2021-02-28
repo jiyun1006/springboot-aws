@@ -176,3 +176,14 @@ public class IndexController {
   }
 }
 ```
+
+<br>
+
+*이후의 수정, 삭제도 비슷한 과정을 거쳐서 controller를 구성한다.*   
+
+<br><br>
+
+
+>## 정리   
+>#### 머스테치를 이용해서 view를 구성했고, 이와 controller, service의 구분을 명확히 하게 되었다.   
+>#### 아직 헷갈리는 부분이 있으므로, 이 구성을 보고 계속해서 생각할 것.
