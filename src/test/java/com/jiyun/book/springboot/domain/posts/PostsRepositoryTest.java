@@ -33,10 +33,10 @@ public class PostsRepositoryTest {
         String content = "테스트 본문";
 
         postsRepository.save(Posts.builder()
-        .title(title)
-        .content(content)
-        .author("jiyun@naver.com")
-        .build());
+                .title(title)
+                .content(content)
+                .author("jiyun@naver.com")
+                .build());
 
         List<Posts> postsList = postsRepository.findAll();
 
@@ -46,21 +46,21 @@ public class PostsRepositoryTest {
     }
 
     @Test
-    public void BaseTimeEntity_등록(){
-        LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
+    public void BaseTimeEntity_등록() {
+        LocalDateTime now = LocalDateTime.of(2019, 6, 4, 0, 0, 0);
         postsRepository.save(Posts.builder()
-        .title("title")
-        .content("content")
-        .author("author")
-        .build());
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
 
 
         List<Posts> postsList = postsRepository.findAll();
 
         Posts posts = postsList.get(0);
 
-        System.out.println(">>>>>>>> createDate = " +posts.getCreatedDate()+ ", modifiedDate ="
-        +posts.getModifiedDate());
+        System.out.println(">>>>>>>> createDate = " + posts.getCreatedDate() + ", modifiedDate ="
+                + posts.getModifiedDate());
 
         assertThat(posts.getCreatedDate()).isAfter(now);
         assertThat(posts.getModifiedDate()).isAfter(now);
