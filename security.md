@@ -344,6 +344,90 @@ public class SessionUser {
         this.picture = user.getPicture();
     }
 }
+```    
+
+
+<br>
+
+#### 로그인 테스트   
+
+- `{{#userName}}`   
+머스테치에서 if문을 위한 문법.    
+  true/false 여부만 판단한다.  
+  userName이 있는 경우 노출.   
+  
+
+- `a href="/logout"`   
+스프링 시큐리티에서 기본적으로 제공하는 로그아웃 url.   
+  
+
+
+- `{{^userName}}`   
+머스테치에서 해당 값이 존재하지 않는 경우에 사용하는 문법   
+  userName이 없는 경우 노출.
+  
+
+
+- `a href="/oauth2/authorization/google`   
+스프링 시큐리티에서 기본적으로 제공하는 로그인 url.   
+  
+
+
 ```
+//생략
+
+{{#userName}}
+        Logged in as : <span id="user">{{userName}}</span>
+<a href="/logout" class="btn btn-info active" role="button">Logout</a>
+        {{/userName}}
+        {{^userName}}
+<a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+        {{/userName}}
+
+//생략
+```   
+
+<br>
+
+index.mustache에서 userName을 사용할 수 있게 IndexController에서
+userName을 model에 저장하는 코드 추가.   
+
+
+- `(SessionUser) httpSession.getAttribute("user")`   
+로그인 성공 시 httpSession.getAttribute("user")에서 값을 가져온다.   
+  
+
+- `if (user!=null)`   
+세션에 저장된 값이 있을 때만 model에 userName으로 등록.   
+  세션에 저장된 값이 없으면 로그인 버튼이 보임.   
+
+
+```java
+@RequiredArgsConstructor
+@Controller
+public class IndexController {
+
+  private final PostsService postsService;
+  private final HttpSession httpSession;
+
+  @GetMapping("/")
+  public String index(Model model) {
+      //생략
+    SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+    if (user != null) {
+      model.addAttribute("userName", user.getName());
+    }
+    return "index";
+  }
+  //생략
+}
+```   
+
+<br>
+
+이제 테스트까지 마쳤지만, spring security 내용이 워낙 방대하다 보니,
+한 번 훑는 식으로 공부한 다음, jpa와 같이 세부적으로 공부를 해야겠다.
+
 
 
