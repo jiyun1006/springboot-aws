@@ -155,4 +155,7 @@ DB테이블과 매핑되는 Entity 클래스가 변경이 잦으면, 여러 클�
 
 <br>
 
->## JPA <a href = "https://github.com/jiyun1006/springboot-aws/blob/main/JPA.md">[클릭]</a>
+>## JPA <a href = "https://github.com/jiyun1006/springboot-aws/blob/main/JPA.md">[클릭]</a>    
+
+
+잠시중단
